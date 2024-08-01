@@ -15,7 +15,7 @@
 ### About Multiresolution Hash Encoding 
 ここではNeRFへの利用を考え3次元座標に対するmultiresolution hash encodingを実装した。以下の手順に基づいている。
 1. 解像度のレベルの数 $L$ とハッシュテーブルのサイズ $T$ 、特徴ベクトルの次元 $F$ を定める。また、空間の分割数の上限と下限 $(N_{min}\leq N_l\leq N_{max},0\leq l\leq L)$ を定める。ただし $N_l$ は $N_l=\lfloor N_{min}b^l\rfloor,b=exp((\ln N_{max}-\ln N_{min})/(L-1))$ で決定される。
-1. 入力される位置座標 $\boldsymbol{x}$ に対し、これが含まれるグリッドの頂点座標をハッシュ関数 \ $$h(x) = \left( \bigoplus_{i=1}^{d} x_i \pi_i \right) \mod T$$ \
+1. 入力される位置座標 $\boldsymbol{x}$ に対し、これが含まれるグリッドの頂点座標をハッシュ関数 $$h(x) = \left( \bigoplus_{i=1}^{d} x_i \pi_i \right) \mod T$$ \
 によって $F$ 次元の特徴ベクトルに変換される。ここで $\pi_i$ は論文で使われている $[1,2654435761,805459861]$ という大きな素数を用いている。なお、この特徴ベクトルは後続のネットワークと一緒に学習される。
 1. 各頂点の特徴ベクトルが線形補完されることで最終的に入力座標に対応する特徴ベクトルを得る。
 
